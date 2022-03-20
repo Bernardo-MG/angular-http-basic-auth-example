@@ -5,6 +5,7 @@ import { environment } from '@environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../model/user';
+import { Response } from '@app/api/model/response';
 
 @Injectable({
     providedIn: 'root'
@@ -27,9 +28,8 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string) {
-        return this.http.post<any>(`${environment.apiUrl}/login`, { username, password })
+        return this.http.post<User>(`${environment.apiUrl}/login`, { username, password })
             .pipe(map(user => {
-                // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
                 user.authdata = window.btoa(username + ':' + password);
                 localStorage.setItem('user', JSON.stringify(user));
                 this.userSubject.next(user);
@@ -38,10 +38,14 @@ export class AuthenticationService {
     }
 
     logout() {
-        // remove user from local storage to log user out
+        // remove user from local storage and set current user to null
         localStorage.removeItem('user');
         this.userSubject.next(new User());
         this.router.navigate(['/login']);
+    }
+
+    register(user: User) {
+        return this.http.post(`${environment.apiUrl}/users/register`, user);
     }
 
 }
