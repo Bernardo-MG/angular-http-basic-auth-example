@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { AuthenticationTokenService } from '@app/authentication/service/authentication-token.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '@app/authentication/service/authentication.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login-form',
@@ -9,43 +11,56 @@ import { AuthenticationService } from '@app/authentication/service/authenticatio
 })
 export class LoginFormComponent {
 
-  form: any = {
-    username: null,
-    password: null
-  };
+  loginForm: FormGroup;
+  loading = false;
+  submitted = false;
+  returnUrl: string = '';
+  error = '';
 
-  isLoggedIn = false;
-  isLoginFailed = false;
-  errorMessage = '';
-  roles: string[] = [];
-
-  constructor(private authService: AuthenticationService, private tokenStorage: AuthenticationTokenService) { }
-
-  ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser().roles;
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService
+  ) {
+    // redirect to home if already logged in
+    if (this.authenticationService.userValue) {
+      this.router.navigate(['/']);
     }
+
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
-  onSubmit(): void {
-    const { username, password } = this.form;
-    this.authService.login(username, password).subscribe(
-      data => {
-        this.tokenStorage.saveToken(data.accessToken);
-        this.tokenStorage.saveUser(data);
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
-      },
-      err => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
-      }
-    );
+
+  ngOnInit() {
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
-  reloadPage(): void {
-    window.location.reload();
+
+  // convenience getter for easy access to form fields
+  get f() { return this.loginForm.controls; }
+
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    this.authenticationService.login(this.f.username.value, this.f.password.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          this.error = error;
+          this.loading = false;
+        });
   }
 
 }
