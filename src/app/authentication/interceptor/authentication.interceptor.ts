@@ -12,11 +12,16 @@ export class AuthenticationInterceptor implements HttpInterceptor {
   constructor(private authenticationService: AuthenticationService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let authReq = req;
+    let authReq;
+
     const token = this.authenticationService.getToken();
-    if (token != null) {
-      authReq = req.clone({ headers: req.headers.set(this.tokenHeaderKey, 'Bearer ' + token) });
+
+    if (token === null) {
+      authReq = req;
+    } else {
+      authReq = req.clone({ headers: req.headers.set(this.tokenHeaderKey, 'Basic ' + token) });
     }
+
     return next.handle(authReq);
   }
 }
