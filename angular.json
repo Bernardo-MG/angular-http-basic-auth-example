@@ -110,9 +110,21 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "angular-http-basic-auth-example"
+  "defaultProject": "angular-http-basic-auth-example",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
