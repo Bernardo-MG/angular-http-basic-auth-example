@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthenticationService } from '@app/authentication/service/authentication.service';
 
 @Component({
-  selector: 'dahs-logout-button',
+  selector: 'logout-button',
   templateUrl: './logout-button.component.html',
   styleUrls: ['./logout-button.component.css']
 })

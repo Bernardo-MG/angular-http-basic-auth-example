@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '@app/authentication/service/authentication.service';
 
 @Component({
-  selector: 'dahs-login-form',
+  selector: 'login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.sass']
 })
