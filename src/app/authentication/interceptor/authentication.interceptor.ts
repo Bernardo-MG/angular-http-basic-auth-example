@@ -5,7 +5,7 @@ import { AuthenticationTokenService } from '../service/authentication-token.serv
 
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor {
+export class AuthenticationInterceptor implements HttpInterceptor {
 
   private tokenHeaderKey = 'Authorization';
 

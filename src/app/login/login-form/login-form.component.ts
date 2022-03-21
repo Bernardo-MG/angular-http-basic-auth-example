@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '@app/authentication/service/authentication.service';
@@ -9,7 +9,7 @@ import { first } from 'rxjs/operators';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.sass']
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit {
 
   loginForm: FormGroup;
   loading = false;

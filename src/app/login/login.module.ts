@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationModule } from '@app/authentication/authentication.module';
 import { LoginFormComponent } from './login-form/login-form.component';
-import { ItemLoginRoutingModule } from './login-routing.module';
+import { LoginRoutingModule } from './login-routing.module';
 
 
 
@@ -12,7 +12,7 @@ import { ItemLoginRoutingModule } from './login-routing.module';
     LoginFormComponent
   ],
   imports: [
-    ItemLoginRoutingModule,
+    LoginRoutingModule,
     AuthenticationModule,
     CommonModule,
     FormsModule,
