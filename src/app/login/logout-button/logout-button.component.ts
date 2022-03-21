@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { LoginService } from '../service/login.service';
+import { AuthenticationService } from '@app/authentication/service/authentication.service';
 
 @Component({
-  selector: 'logout-button',
+  selector: 'dahs-logout-button',
   templateUrl: './logout-button.component.html',
   styleUrls: ['./logout-button.component.css']
 })
 export class LogoutButtonComponent {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   logout(){
-    this.loginService.logout();
+    this.authenticationService.logout();
   }
 
 }

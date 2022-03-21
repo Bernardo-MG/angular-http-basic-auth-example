@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationModule } from '@app/authentication/authentication.module';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { LoginRoutingModule } from './login-routing.module';
-import { LoginService } from './service/login.service';
 import { LogoutButtonComponent } from './logout-button/logout-button.component';
 
 
@@ -20,9 +19,6 @@ import { LogoutButtonComponent } from './logout-button/logout-button.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule
-  ],
-  providers: [
-    LoginService
   ],
   exports: [
     LogoutButtonComponent

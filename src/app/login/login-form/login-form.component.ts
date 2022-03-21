@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoginService } from '../service/login.service';
+import { AuthenticationService } from '@app/authentication/service/authentication.service';
 
 @Component({
-  selector: 'login-form',
+  selector: 'dahs-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.sass']
 })
@@ -20,10 +20,10 @@ export class LoginFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private loginService: LoginService
+    private authenticationService: AuthenticationService
   ) {
     // redirect to home if already logged in
-    if (this.loginService.user.logged) {
+    if (this.authenticationService.getUser().logged) {
       this.router.navigate(['/']);
     }
 
@@ -50,7 +50,7 @@ export class LoginFormComponent implements OnInit {
     }
 
     this.loading = true;
-    this.loginService.login(this.f['username'].value, this.f['password'].value)
+    this.authenticationService.login(this.f['username'].value, this.f['password'].value)
       .subscribe({
         next: user => {
           this.loading = false;
