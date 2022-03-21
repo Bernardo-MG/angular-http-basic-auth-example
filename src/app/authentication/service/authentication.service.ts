@@ -12,27 +12,33 @@ import { User } from '../model/user';
 export class AuthenticationService {
 
     private userSubject: BehaviorSubject<User>;
-    public user: Observable<User>;
 
     constructor(
         private router: Router,
         private http: HttpClient
     ) {
-        this.userSubject = new BehaviorSubject<User>(JSON.parse(<string>localStorage.getItem('user')));
-        this.user = this.userSubject.asObservable();
+        this.userSubject = new BehaviorSubject<User>(new User());
     }
 
-    public get userValue(): User {
+    public get user(): User {
         return this.userSubject.value;
     }
 
-    login(username: string, password: string) {
+    login(username: string, password: string): Observable<User> {
         return this.http.post<User>(`${environment.apiUrl}/login`, { username, password })
             .pipe(map(user => {
-                user.authdata = window.btoa(username + ':' + password);
-                localStorage.setItem('user', JSON.stringify(user));
-                this.userSubject.next(user);
-                return user;
+                let loggedUser;
+
+                if (user) {
+                    loggedUser = user;
+                    loggedUser.authdata = window.btoa(username + ':' + password);
+                    loggedUser.logged = true;
+                } else {
+                    loggedUser = new User();
+                }
+
+                this.userSubject.next(loggedUser);
+                return loggedUser;
             }));
     }
 

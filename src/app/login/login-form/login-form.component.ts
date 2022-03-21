@@ -5,7 +5,7 @@ import { AuthenticationService } from '@app/authentication/service/authenticatio
 import { first } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-login-form',
+  selector: 'dahs-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.sass']
 })
@@ -24,7 +24,7 @@ export class LoginFormComponent implements OnInit {
     private authenticationService: AuthenticationService
   ) {
     // redirect to home if already logged in
-    if (this.authenticationService.userValue) {
+    if (this.authenticationService.user.logged) {
       this.router.navigate(['/']);
     }
 
@@ -51,17 +51,19 @@ export class LoginFormComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
-      .pipe(first())
-      .subscribe(
-        data => {
+    this.authenticationService.login(this.f['username'].value, this.f['password'].value)
+      .subscribe({
+        next: user => {
           this.loading = false;
-          this.router.navigate([this.returnUrl]);
+          if (user.logged) {
+            this.router.navigate([this.returnUrl]);
+          }
         },
-        error => {
+        error: error => {
           this.error = error;
           this.loading = false;
-        });
+        }
+      });
   }
 
 }
