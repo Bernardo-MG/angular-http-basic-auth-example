@@ -1,56 +1,20 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { environment } from '@environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { User } from '../model/user';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class AuthenticationService {
 
-    private userSubject: BehaviorSubject<User>;
+    private tokenId: string = 'access_token';
 
     constructor(
-        private router: Router,
-        private http: HttpClient
     ) {
-        this.userSubject = new BehaviorSubject<User>(new User());
     }
 
-    public get user(): User {
-        return this.userSubject.value;
+    getToken(): string | null {
+        return localStorage.getItem(this.tokenId);
     }
 
-    login(username: string, password: string): Observable<User> {
-        return this.http.post<User>(`${environment.apiUrl}/login`, { username, password })
-            .pipe(map(user => {
-                let loggedUser;
-
-                if (user) {
-                    loggedUser = user;
-                    loggedUser.authdata = window.btoa(username + ':' + password);
-                    loggedUser.logged = true;
-                } else {
-                    loggedUser = new User();
-                }
-
-                this.userSubject.next(loggedUser);
-                return loggedUser;
-            }));
-    }
-
-    logout() {
-        // remove user from local storage and set current user to null
-        localStorage.removeItem('user');
-        this.userSubject.next(new User());
-        this.router.navigate(['/login']);
-    }
-
-    register(user: User) {
-        return this.http.post(`${environment.apiUrl}/users/register`, user);
+    saveToken(token: string) {
+        return localStorage.setItem(this.tokenId, token);
     }
 
 }

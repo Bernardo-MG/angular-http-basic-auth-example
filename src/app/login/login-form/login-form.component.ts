@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '@app/authentication/service/authentication.service';
 import { first } from 'rxjs/operators';
+import { LoginService } from '../service/login.service';
 
 @Component({
   selector: 'dahs-login-form',
@@ -21,10 +22,11 @@ export class LoginFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private loginService: LoginService,
     private authenticationService: AuthenticationService
   ) {
     // redirect to home if already logged in
-    if (this.authenticationService.user.logged) {
+    if (this.loginService.user.logged) {
       this.router.navigate(['/']);
     }
 
@@ -51,12 +53,17 @@ export class LoginFormComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.login(this.f['username'].value, this.f['password'].value)
+    this.loginService.login(this.f['username'].value, this.f['password'].value)
       .subscribe({
         next: user => {
           this.loading = false;
           if (user.logged) {
+            if(user.authdata){
+              this.authenticationService.saveToken(user.authdata);
+            }
             this.router.navigate([this.returnUrl]);
+          } else {
+            this.authenticationService.saveToken('');
           }
         },
         error: error => {
