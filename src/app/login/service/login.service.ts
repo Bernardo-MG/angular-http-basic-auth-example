@@ -9,6 +9,8 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class LoginService {
 
+  private tokenId: string = 'access_token';
+
   public user: User = new User();
 
   constructor(
@@ -17,16 +19,18 @@ export class LoginService {
   ) { }
 
   login(username: string, password: string): Observable<User> {
-    return this.http.post<User>(`${environment.apiUrl}/login`, { username, password })
+    return this.http.post<User>(`${environment.apiUrl}/auth/login`, { username, password })
       .pipe(map(user => {
         let loggedUser;
 
         if (user) {
           loggedUser = user;
-          loggedUser.authdata = window.btoa(username + ':' + password);
+          const token = window.btoa(username + ':' + password);
           loggedUser.logged = true;
+          localStorage.setItem(this.tokenId, token);
         } else {
           loggedUser = new User();
+          localStorage.removeItem(this.tokenId);
         }
 
         this.user = loggedUser;
@@ -36,7 +40,7 @@ export class LoginService {
 
   logout() {
     // remove user from local storage and set current user to null
-    localStorage.removeItem('user');
+    localStorage.removeItem(this.tokenId);
     this.user = new User();
     this.router.navigate(['/login']);
   }

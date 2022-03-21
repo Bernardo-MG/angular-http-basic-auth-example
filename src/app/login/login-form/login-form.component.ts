@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from '@app/authentication/service/authentication.service';
-import { first } from 'rxjs/operators';
 import { LoginService } from '../service/login.service';
 
 @Component({
-  selector: 'dahs-login-form',
+  selector: 'login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.sass']
 })
@@ -22,8 +20,7 @@ export class LoginFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private loginService: LoginService,
-    private authenticationService: AuthenticationService
+    private loginService: LoginService
   ) {
     // redirect to home if already logged in
     if (this.loginService.user.logged) {
@@ -58,12 +55,7 @@ export class LoginFormComponent implements OnInit {
         next: user => {
           this.loading = false;
           if (user.logged) {
-            if(user.authdata){
-              this.authenticationService.saveToken(user.authdata);
-            }
             this.router.navigate([this.returnUrl]);
-          } else {
-            this.authenticationService.saveToken('');
           }
         },
         error: error => {

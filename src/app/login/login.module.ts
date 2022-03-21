@@ -5,12 +5,14 @@ import { AuthenticationModule } from '@app/authentication/authentication.module'
 import { LoginFormComponent } from './login-form/login-form.component';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginService } from './service/login.service';
+import { LogoutButtonComponent } from './logout-button/logout-button.component';
 
 
 
 @NgModule({
   declarations: [
-    LoginFormComponent
+    LoginFormComponent,
+    LogoutButtonComponent
   ],
   imports: [
     LoginRoutingModule,
@@ -21,6 +23,9 @@ import { LoginService } from './service/login.service';
   ],
   providers: [
     LoginService
+  ],
+  exports: [
+    LogoutButtonComponent
   ]
 })
 export class LoginModule { }

@@ -5,16 +5,10 @@ export class AuthenticationService {
 
     private tokenId: string = 'access_token';
 
-    constructor(
-    ) {
-    }
+    constructor() { }
 
     getToken(): string | null {
         return localStorage.getItem(this.tokenId);
-    }
-
-    saveToken(token: string) {
-        return localStorage.setItem(this.tokenId, token);
     }
 
 }
