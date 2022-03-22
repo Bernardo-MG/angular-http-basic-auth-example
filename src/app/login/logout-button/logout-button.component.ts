@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '@app/authentication/service/authentication.service';
 
 @Component({
@@ -8,10 +9,14 @@ import { AuthenticationService } from '@app/authentication/service/authenticatio
 })
 export class LogoutButtonComponent {
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) { }
 
-  logout(){
+  logout() {
     this.authenticationService.logout();
+    this.router.navigate(['/login']);
   }
 
 }
