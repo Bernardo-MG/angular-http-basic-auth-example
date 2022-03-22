@@ -1,5 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { DataService } from '../service/data.service';
 import { DataListComponent } from './data-list.component';
 
 describe('DataListComponent', () => {
@@ -8,9 +9,17 @@ describe('DataListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DataListComponent ]
+      imports: [
+        HttpClientTestingModule
+      ],
+      declarations: [
+        DataListComponent
+      ],
+      providers: [
+        DataService
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
