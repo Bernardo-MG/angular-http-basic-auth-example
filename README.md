@@ -1,6 +1,6 @@
 # Angular HTTP Basic Authentication Example
 
-Example for setting up HTTP Basic authentication with Angular.
+Example for setting up HTTP Basic authentication with Angular. It is prepared to be used with [Spring WS Basic Security Example](https://github.com/bernardo-mg/spring-ws-basic-security-example);
 
 ## Features
 
