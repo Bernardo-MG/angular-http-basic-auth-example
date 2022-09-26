@@ -5,18 +5,24 @@ import { AuthenticationService } from '@app/authentication/service/authenticatio
 @Component({
   selector: 'logout-button',
   templateUrl: './logout-button.component.html',
-  styleUrls: ['./logout-button.component.css']
+  styleUrls: ['./logout-button.component.sass']
 })
 export class LogoutButtonComponent {
+
+  private loginUrl = '/login';
 
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router
   ) { }
 
-  logout() {
+  public onLogout() {
     this.authenticationService.logout();
-    this.router.navigate(['/login']);
+    this.router.navigate([this.loginUrl]);
+  }
+
+  public isAbleToLogout(): boolean {
+    return this.authenticationService.getUser().logged;
   }
 
 }

@@ -4,6 +4,7 @@ import { Response } from '@app/api/model/response';
 import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { LoginStatus } from '../model/login-status';
 import { User } from '../model/user';
 
 @Injectable({
@@ -11,37 +12,43 @@ import { User } from '../model/user';
 })
 export class AuthenticationService {
 
+  private loginUrl = environment.apiUrl + "/fee";
+
   public user: User = new User();
 
   constructor(
     private http: HttpClient
   ) { }
 
-  login(username: string, password: string): Observable<User> {
-    return this.http.post<Response<User>>(`${environment.apiUrl}/login/`, { username, password })
+  public login(username: string, password: string): Observable<User> {
+    const toUser = (status: LoginStatus) => this.loadUser(username, password, status);
+
+    return this.http.post<Response<LoginStatus>>(this.loginUrl, { username, password })
       .pipe(map(response => response.content))
-      .pipe(map(user => {
-        let loggedUser;
-
-        if (user) {
-          loggedUser = user;
-          const token = window.btoa(username + ':' + password);
-          loggedUser.logged = true;
-          loggedUser.token = token;
-        } else {
-          loggedUser = new User();
-        }
-
-        this.user = loggedUser;
-        return this.user;
-      }));
+      .pipe(map(toUser));
   }
 
-  logout() {
+  public logout() {
     this.user = new User();
   }
 
-  getUser(): User {
+  public getUser(): User {
+    return this.user;
+  }
+
+  private loadUser(username: string, password: string, status: LoginStatus): User {
+    let loggedUser;
+
+    loggedUser = new User();
+    if (status) {
+      loggedUser.username = status.username;
+      loggedUser.logged = true;
+
+      const token = window.btoa(username + ':' + password);
+      loggedUser.token = token;
+    }
+
+    this.user = loggedUser;
     return this.user;
   }
 
