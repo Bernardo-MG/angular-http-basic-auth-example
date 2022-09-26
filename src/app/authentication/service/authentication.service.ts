@@ -12,7 +12,7 @@ import { User } from '../model/user';
 })
 export class AuthenticationService {
 
-  private loginUrl = environment.apiUrl + "/fee";
+  private loginUrl = environment.apiUrl + "/login";
 
   public user: User = new User();
 
