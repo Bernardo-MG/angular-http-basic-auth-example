@@ -6,16 +6,16 @@
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" formControlName="username" class="form-control"
-                        [ngClass]="{ 'is-invalid': isFormInvalid() && form.get('username')?.errors }" />
-                    <div *ngIf="isFormInvalid() && form.get('username')?.hasError('required')" class="invalid-feedback">
+                        [ngClass]="{ 'is-invalid': isFormInvalid('username') }" />
+                    <div *ngIf="isFormInvalid('username') && form.get('username')?.hasError('required')" class="invalid-feedback">
                         Username is required
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" formControlName="password" class="form-control"
-                        [ngClass]="{ 'is-invalid': isFormInvalid() && form.get('password')?.errors }" />
-                    <div *ngIf="isFormInvalid() && form.get('password')?.hasError('required')" class="invalid-feedback">
+                        [ngClass]="{ 'is-invalid': isFormInvalid('password') }" />
+                    <div *ngIf="isFormInvalid('password') && form.get('password')?.hasError('required')" class="invalid-feedback">
                         Password is required
                     </div>
                 </div>

@@ -30,8 +30,21 @@ export class LoginFormComponent {
     }
   }
 
-  public isFormInvalid(): boolean {
-    return this.form.invalid && (this.form.dirty || this.form.touched);
+  public isFormInvalid(field: string): boolean {
+    let invalid: boolean;
+
+    if(this.form.invalid) {
+      const formField = this.form.get(field);
+      if(formField){
+        invalid = (formField?.dirty || formField?.touched) && (formField?.errors != null);
+      } else {
+        invalid = false;
+      }
+    } else {
+      invalid = false;
+    }
+
+    return invalid;
   }
 
   public canLogin(): boolean {
