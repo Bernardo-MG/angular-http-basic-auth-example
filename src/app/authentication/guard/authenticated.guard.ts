@@ -13,15 +13,20 @@ export class AuthenticatedGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const user = this.authenticationService.getUser().token;
-    if (user) {
-      // logged in so return true
-      return true;
+    const logged = this.authenticationService.getUser().logged;
+    let active;
+
+    if (logged) {
+      // Logged in
+      active = true;
+    } else {
+      // Not logged in
+      // Redirect to login
+      this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+      active = false;
     }
 
-    // not logged in so redirect to login page with the return url
-    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
-    return false;
+    return active;
   }
 
 }

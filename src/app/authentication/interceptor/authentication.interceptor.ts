@@ -9,19 +9,27 @@ export class AuthenticationInterceptor implements HttpInterceptor {
 
   private tokenHeaderKey = 'Authorization';
 
+  private tokenHeaderIdentifier = 'Basic'
+
   constructor(private authenticationService: AuthenticationService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authReq;
 
+    // Acquire the current user token
     const token = this.authenticationService.getUser().token;
 
     if (token === null) {
+      // No token
+      // No changes to request
       authReq = request;
     } else {
-      authReq = request.clone({ headers: request.headers.set(this.tokenHeaderKey, 'Basic ' + token) });
+      // Has token
+      // It is added to the request
+      authReq = request.clone({ headers: request.headers.set(this.tokenHeaderKey, `${this.tokenHeaderIdentifier} ${token}`) });
     }
 
     return next.handle(authReq);
   }
+
 }
