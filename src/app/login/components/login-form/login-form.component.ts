@@ -26,16 +26,22 @@ export class LoginFormComponent {
 
   public onLogin() {
     if (this.form.valid) {
-      this.login.emit(this.form.value);
+      if ((this.form.value.username) && (this.form.value.password)) {
+        const user = new LoginUser();
+        user.username = this.form.value.username;
+        user.password = this.form.value.password;
+
+        this.login.emit(user);
+      }
     }
   }
 
   public isFormInvalid(field: string): boolean {
     let invalid: boolean;
 
-    if(this.form.invalid) {
+    if (this.form.invalid) {
       const formField = this.form.get(field);
-      if(formField){
+      if (formField) {
         invalid = (formField?.dirty || formField?.touched) && (formField?.errors != null);
       } else {
         invalid = false;
