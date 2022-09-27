@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Response } from '@app/api/model/response';
+import { ApiResponse } from '@app/api/model/api-response';
 import { environment } from '@environments/environment';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { LoginStatus } from '../model/login-status';
 import { User } from '../model/user';
 
@@ -23,7 +23,8 @@ export class AuthenticationService {
   public login(username: string, password: string): Observable<User> {
     const toUser = (status: LoginStatus) => this.loadUser(username, password, status);
 
-    return this.http.post<Response<LoginStatus>>(this.loginUrl, { username, password })
+    return this.http.post<ApiResponse<LoginStatus>>(this.loginUrl, { username, password })
+      .pipe(catchError(this.handleError))
       .pipe(map(response => response.content))
       .pipe(map(toUser));
   }
@@ -50,6 +51,10 @@ export class AuthenticationService {
 
     this.user = loggedUser;
     return this.user;
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    return throwError(() => new Error(error.message));
   }
 
 }
