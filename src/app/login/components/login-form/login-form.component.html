@@ -19,7 +19,7 @@
                         Password is required
                     </div>
                 </div>
-                <button [disabled]="!canLogin()" class="btn btn-primary">
+                <button [disabled]="!canLogin()" class="btn btn-primary" [attr.aria-disabled]="!canLogin()" aria-label="Login">
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                     Login
                 </button>

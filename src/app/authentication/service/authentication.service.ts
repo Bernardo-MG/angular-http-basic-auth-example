@@ -14,7 +14,7 @@ export class AuthenticationService {
 
   private loginUrl = environment.apiUrl + "/login";
 
-  public user: User = new User();
+  private user: User = new User();
 
   constructor(
     private http: HttpClient
