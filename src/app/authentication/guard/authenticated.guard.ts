@@ -7,6 +7,8 @@ import { AuthenticationService } from '../service/authentication.service';
 })
 export class AuthenticatedGuard implements CanActivate {
 
+  private loginUrl = '/login';
+
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService
@@ -22,7 +24,7 @@ export class AuthenticatedGuard implements CanActivate {
     } else {
       // Not logged in
       // Redirect to login
-      this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+      this.router.navigate([this.loginUrl], { queryParams: { returnUrl: state.url } });
       active = false;
     }
 
