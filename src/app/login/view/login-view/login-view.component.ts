@@ -11,11 +11,11 @@ import { LoginUser } from '@app/login/model/login-user';
 })
 export class LoginViewComponent implements OnInit {
 
-  private returnUrl: string = '';
-
   public loading = false;
 
   public error = '';
+
+  private returnUrl: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +28,7 @@ export class LoginViewComponent implements OnInit {
     if (this.authenticationService.getUser().logged) {
       this.router.navigate(['/']);
     }
+
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
