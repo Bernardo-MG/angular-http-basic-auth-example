@@ -24,7 +24,6 @@ export class AuthenticationService {
     const toUser = (status: LoginStatus) => this.loadUser(username, password, status);
 
     return this.http.post<ApiResponse<LoginStatus>>(this.loginUrl, { username, password })
-      .pipe(catchError(this.handleError))
       .pipe(map(response => response.content))
       .pipe(map(toUser));
   }
@@ -51,10 +50,6 @@ export class AuthenticationService {
 
     this.user = loggedUser;
     return this.user;
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    return throwError(() => new Error(error.message));
   }
 
 }

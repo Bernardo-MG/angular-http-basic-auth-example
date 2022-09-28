@@ -13,7 +13,7 @@ export class LoginViewComponent implements OnInit {
 
   public loading = false;
 
-  public error = '';
+  public failed = false;
 
   private returnUrl: string = '';
 
@@ -37,13 +37,14 @@ export class LoginViewComponent implements OnInit {
     this.authenticationService.login(login.username, login.password)
       .subscribe({
         next: user => {
+          this.failed = false;
           this.loading = false;
           if (user.logged) {
             this.router.navigate([this.returnUrl]);
           }
         },
         error: error => {
-          this.error = error;
+          this.failed = true;
           this.loading = false;
         }
       });
