@@ -42,10 +42,12 @@ export class AuthenticationService {
     loggedUser = new User();
     if (status) {
       loggedUser.username = status.username;
-      loggedUser.logged = true;
+      loggedUser.logged = status.logged;
 
-      const token = window.btoa(username + ':' + password);
-      loggedUser.token = token;
+      if (loggedUser.logged) {
+        const token = window.btoa(username + ':' + password);
+        loggedUser.token = token;
+      }
     }
 
     this.user = loggedUser;
