@@ -2,9 +2,23 @@
 {
   "name": "angular-http-basic-auth-example",
   "version": "1.0.0",
+  "description": "Example using HTTP Basic authentication with Angular",
+  "author": "Bernardo Mart�nez Garrido",
+  "homepage": "https://github.com/Bernardo-MG/angular-http-basic-auth-example",
+  "license": "MIT",
+  "keywords": [
+    "example", "HTTP basic"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:bernardo-mg/angular-http-basic-auth-example.git"
+  },
+  "bugs": {
+    "url": "https://www.github.com/bernardo-mg/angular-http-basic-auth-example/issues"
+  },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --open",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
