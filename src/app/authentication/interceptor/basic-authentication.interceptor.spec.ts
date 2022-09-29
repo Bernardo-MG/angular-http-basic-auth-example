@@ -1,20 +1,20 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { AuthenticationInterceptor } from './authentication.interceptor';
+import { BasicAuthenticationInterceptor } from './basic-authentication.interceptor';
 
-describe('AuthenticationInterceptor', () => {
+describe('BasicAuthenticationInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [
       HttpClientTestingModule
     ],
     providers: [
-      AuthenticationInterceptor
+      BasicAuthenticationInterceptor
       ]
   }));
 
   it('should be created', () => {
-    const interceptor: AuthenticationInterceptor = TestBed.inject(AuthenticationInterceptor);
+    const interceptor: BasicAuthenticationInterceptor = TestBed.inject(BasicAuthenticationInterceptor);
     expect(interceptor).toBeTruthy();
   });
 });
