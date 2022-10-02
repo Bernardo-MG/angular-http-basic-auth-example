@@ -21,11 +21,9 @@ export class AuthenticationService {
   ) { }
 
   public login(username: string, password: string): Observable<User> {
-    const toUser = (status: LoginStatus) => this.loadUser(username, password, status);
-
     return this.http.post<ApiResponse<LoginStatus>>(this.loginUrl, { username, password })
       .pipe(map(response => response.content))
-      .pipe(map(toUser));
+      .pipe(map(r => this.loadUser(r)));
   }
 
   public logout() {
@@ -36,7 +34,7 @@ export class AuthenticationService {
     return this.user;
   }
 
-  private loadUser(username: string, password: string, status: LoginStatus): User {
+  private loadUser(status: LoginStatus): User {
     let loggedUser;
 
     loggedUser = new User();
@@ -45,8 +43,7 @@ export class AuthenticationService {
       loggedUser.logged = status.logged;
 
       if (loggedUser.logged) {
-        const token = window.btoa(username + ':' + password);
-        loggedUser.token = token;
+        loggedUser.token = status.token;
       }
     }
 
