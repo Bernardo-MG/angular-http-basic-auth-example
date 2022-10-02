@@ -16,9 +16,16 @@ export class AuthenticationService {
 
   private user: User = new User();
 
+  private userKey = 'user';
+
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+    const localUser = localStorage.getItem(this.userKey);
+    if (localUser) {
+      this.user = JSON.parse(localUser);
+    }
+  }
 
   public login(username: string, password: string): Observable<User> {
     return this.http.post<ApiResponse<LoginStatus>>(this.loginUrl, { username, password })
@@ -41,9 +48,12 @@ export class AuthenticationService {
     if (status) {
       loggedUser.username = status.username;
       loggedUser.logged = status.logged;
+      loggedUser.token = status.token;
 
       if (loggedUser.logged) {
-        loggedUser.token = status.token;
+        localStorage.setItem(this.userKey, JSON.stringify(loggedUser));
+      } else {
+        localStorage.removeItem(this.userKey);
       }
     }
 
