@@ -31,4 +31,19 @@ describe('LoginFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should disable the login button by default', () => {
+    const button = fixture.nativeElement.querySelector('form button');
+    expect(button.disabled).toEqual(true);
+  });
+
+  it('should enable the login button when the form is valid', () => {
+    component.form.controls['username'].setValue('username');
+    component.form.controls['password'].setValue('password');
+    fixture.detectChanges();
+
+    const button = fixture.nativeElement.querySelector('form button');
+    expect(button.disabled).toEqual(false);
+  });
+
 });

@@ -127,8 +127,9 @@
       }
     }
   },
-  "defaultProject": "angular-http-basic-auth-example",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

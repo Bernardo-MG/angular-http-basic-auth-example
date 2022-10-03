@@ -1,11 +1,12 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { LogoutButtonComponent } from './logout-button.component';
 
-describe('LogoutButtonComponent', () => {
-  let component: LogoutButtonComponent;
-  let fixture: ComponentFixture<LogoutButtonComponent>;
+import { LoginViewComponent } from './login-view.component';
+
+describe('LoginViewComponent', () => {
+  let component: LoginViewComponent;
+  let fixture: ComponentFixture<LoginViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -13,15 +14,15 @@ describe('LogoutButtonComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule
       ],
-      declarations: [ 
-        LogoutButtonComponent
-       ]
+      declarations: [
+        LoginViewComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LogoutButtonComponent);
+    fixture = TestBed.createComponent(LoginViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -29,4 +30,5 @@ describe('LogoutButtonComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

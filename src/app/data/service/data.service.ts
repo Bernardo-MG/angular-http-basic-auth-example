@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Response } from '@app/api/model/response';
+import { ApiResponse } from '@app/api/model/api-response';
 import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -14,7 +14,7 @@ export class DataService {
     ) { }
   
   getData(): Observable<Data[]> {
-    return this.http.get<Response<Data[]>>(`${environment.apiUrl}/rest/entity/`)
+    return this.http.get<ApiResponse<Data[]>>(`${environment.apiUrl}/rest/entity/`)
       .pipe(map(response => response.content));
   }
 
