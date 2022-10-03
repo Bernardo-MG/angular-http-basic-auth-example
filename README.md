@@ -5,6 +5,7 @@ Example for setting up HTTP Basic authentication with Angular. It is prepared to
 ## Features
 
 - HTTP Basic Authentication
+- Remember me to keep logged in
 
 ## Usage
 
