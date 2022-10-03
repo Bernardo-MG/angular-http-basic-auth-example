@@ -28,6 +28,7 @@ export class LoginViewComponent implements OnInit {
   }
 
   public onLogin(login: LoginUser) {
+    this.authenticationService.setRememberMe(login.rememberMe);
     this.authenticationService.login(login.username, login.password)
       .subscribe({
         next: user => {

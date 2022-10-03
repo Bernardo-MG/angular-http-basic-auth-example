@@ -15,7 +15,8 @@ export class LoginFormComponent {
 
   public form = this.formBuilder.group({
     username: ['', Validators.required],
-    password: ['', Validators.required]
+    password: ['', Validators.required],
+    rememberMe: [false, Validators.required]
   });
 
   constructor(
@@ -28,6 +29,9 @@ export class LoginFormComponent {
         const user = new LoginUser();
         user.username = this.form.value.username;
         user.password = this.form.value.password;
+        if(this.form.value.rememberMe){
+          user.rememberMe = this.form.value.rememberMe;
+        }
 
         this.login.emit(user);
       }
