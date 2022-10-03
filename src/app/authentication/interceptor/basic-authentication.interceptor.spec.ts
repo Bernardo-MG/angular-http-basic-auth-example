@@ -10,7 +10,7 @@ describe('BasicAuthenticationInterceptor', () => {
     ],
     providers: [
       BasicAuthenticationInterceptor
-      ]
+    ]
   }));
 
   it('should be created', () => {
