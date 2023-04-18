@@ -2,14 +2,9 @@
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/">{{title}}</a>
     <ng-template [ngIf]="loggedIn">
-      <logout-button></logout-button>
+      <div id="navbar-icons" class="justify-content-end">
+        <logout-button></logout-button>
+      </div>
     </ng-template>
-    <div class="collapse navbar-collapse" id="navbar-main-menu">
-      <ul class="nav navbar-nav ms-auto">
-        <ng-template [ngIf]="loggedIn">
-          <navigation-dropdown [links]="links"></navigation-dropdown>
-        </ng-template>
-      </ul>
-    </div>
   </div>
 </nav>
