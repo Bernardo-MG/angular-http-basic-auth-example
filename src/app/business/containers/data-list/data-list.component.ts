@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Data } from '../model/data';
-import { DataService } from '../service/data.service';
+import { Component } from '@angular/core';
+import { Data } from '../../model/data';
+import { DataService } from '../../service/data.service';
 
 @Component({
   selector: 'data-list',

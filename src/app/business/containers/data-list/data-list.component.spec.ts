@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DataService } from '../service/data.service';
+import { DataService } from '../../service/data.service';
 import { DataListComponent } from './data-list.component';
 
 describe('DataListComponent', () => {

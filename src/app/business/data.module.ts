@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataListComponent } from './data-list/data-list.component';
+import { DataListComponent } from './containers/data-list/data-list.component';
 import { DataRoutingModule } from './data-routing.module';
 import { DataService } from './service/data.service';
+import { LayoutModule } from '@app/shared/layout/layout.module';
 
 
 
@@ -12,7 +13,8 @@ import { DataService } from './service/data.service';
   ],
   imports: [
     DataRoutingModule,
-    CommonModule
+    CommonModule,
+    LayoutModule
   ],
   providers: [
     DataService
