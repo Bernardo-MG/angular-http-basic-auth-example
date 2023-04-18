@@ -9,7 +9,5 @@ import { MenuLink } from '../../model/menu-link';
 export class NavigationDropdownComponent {
 
   @Input() links: MenuLink[] = [];
-  
-  constructor() { }
 
 }
