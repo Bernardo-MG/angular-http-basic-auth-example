@@ -4,34 +4,35 @@ import { LoggedInGuard } from './core/authentication/guard/logged-in.guard';
 import { LoggedOutGuard } from './core/authentication/guard/logged-out.guard';
 import { CenteredLayoutComponent } from './core/views/containers/centered-layout/centered-layout.component';
 import { HeaderLayoutComponent } from './core/views/containers/header-layout/header-layout.component';
-import { LoginComponent } from './core/login/containers/login/login.component';
 
 const loginModule = () => import('@app/core/login/login.module').then(m => m.LoginModule);
 const businessModule = () => import('@app/business/data.module').then(m => m.DataModule);
 
 const routes: Routes = [
-  // Main app
+  { path: '', redirectTo: '/data', pathMatch: 'full' },
+  // Login
   {
-    path: '', component: HeaderLayoutComponent,
+    path: 'login',
+    component: HeaderLayoutComponent,
+    canActivate: [LoggedOutGuard],
     children: [
-      // Login
       {
         path: '', component: CenteredLayoutComponent,
-        canActivate: [LoggedOutGuard],
         children: [
           {
-            path: 'login', component: LoginComponent
+            path: '', loadChildren: loginModule
           }
         ]
-      },
-      // Business
-      {
-        path: 'data', 
-        canActivate: [LoggedInGuard],
-        children: [
-          { path: '', loadChildren: businessModule }
-        ]
       }
+    ]
+  },
+  // Business
+  {
+    path: 'data',
+    component: HeaderLayoutComponent,
+    canActivate: [LoggedInGuard],
+    children: [
+      { path: '', loadChildren: businessModule }
     ]
   }
 ];

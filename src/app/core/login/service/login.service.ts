@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiResponse } from '@app/core/api/models/api-response';
 import { LoginRequest } from '@app/core/authentication/model/login-request';
-import { LoginStatus } from '@app/core/authentication/model/login-status';
 import { UserStatus } from '@app/core/authentication/model/user-status';
 import { AuthenticationContainer } from '@app/core/authentication/services/authentication-container.service';
 import { environment } from 'environments/environment';
@@ -32,7 +31,7 @@ export class LoginService {
    * @returns the user resulting from the login
    */
   public login(request: LoginRequest, rememberMe: boolean): Observable<UserStatus> {
-    return this.http.post<ApiResponse<LoginStatus>>(this.loginUrl, request)
+    return this.http.post<ApiResponse<UserStatus>>(this.loginUrl, request)
       .pipe(map(response => response.content))
       .pipe(map(response => this.toUser(response)))
       .pipe(tap(user => this.storeUser(user, rememberMe)));
@@ -51,12 +50,12 @@ export class LoginService {
    * @param status status to map
    * @returns user generated from the login status
    */
-  private toUser(status: LoginStatus): UserStatus {
+  private toUser(status: UserStatus): UserStatus {
     const loggedUser = new UserStatus();
     if (status) {
       // Received data
       loggedUser.username = status.username;
-      loggedUser.logged = status.successful;
+      loggedUser.logged = status.logged;
       loggedUser.token = status.token;
     }
 

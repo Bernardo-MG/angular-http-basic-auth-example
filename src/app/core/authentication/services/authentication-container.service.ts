@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UserStatus } from '../model/user-status';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthenticationContainer {
 
   private userKey = 'user';
@@ -82,6 +84,8 @@ export class AuthenticationContainer {
       // Store login details in the local storage
       // This allows getting them back on a page reload
       localStorage.setItem(this.userKey, JSON.stringify(user));
+    } else {
+      localStorage.removeItem(this.userKey);
     }
   }
 
