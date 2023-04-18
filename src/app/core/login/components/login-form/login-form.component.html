@@ -3,12 +3,14 @@
    <!-- Username -->
    <div class="mb-2">
       <input placeholder="Username" type="text" id="usernameInput" formControlName="username" class="form-control"
-         [ngClass]="{ 'is-invalid': isFieldInvalid('username') }" />
+         [ngClass]="{ 'is-invalid': isInvalid('username') }" [disabled]="!isInputEnabled()"
+         [attr.aria-disabled]="!isInputEnabled()" />
    </div>
    <!-- Password -->
    <div class="mb-2">
       <input placeholder="Password" type="password" id="passwordInput" formControlName="password" class="form-control"
-         [ngClass]="{ 'is-invalid': isFieldInvalid('password') }" />
+         [ngClass]="{ 'is-invalid': isInvalid('password') }" [disabled]="!isInputEnabled()"
+         [attr.aria-disabled]="!isInputEnabled()" />
    </div>
    <!-- Remember me check -->
    <div class="row mb-2">
@@ -19,11 +21,19 @@
          </div>
       </div>
    </div>
-   <!-- Login button -->
    <div class="d-grid gap-2">
-      <button [disabled]="!isLoginEnabled()" class="btn btn-primary" [attr.aria-disabled]="!isLoginEnabled()"
-         aria-label="Login">
-         <icon-waiting *ngIf="loading"></icon-waiting> Login
-      </button>
+      <div *ngIf="waiting; then waiting_cue else login_button"></div>
+      <ng-template #waiting_cue>
+         <!-- Waiting cue -->
+         <button type="submit" class="btn btn-primary" aria-label="Login"
+            disabled><icon-waiting></icon-waiting></button>
+      </ng-template>
+      <ng-template #login_button>
+         <!-- Login button -->
+         <button type="submit" [disabled]="!isLoginEnabled()" class="btn btn-primary"
+            [attr.aria-disabled]="!isLoginEnabled()" aria-label="Login">
+            <icon-waiting *ngIf="waiting"></icon-waiting> Login
+         </button>
+      </ng-template>
    </div>
 </form>
