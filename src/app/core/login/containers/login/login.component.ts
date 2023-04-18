@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoginFormUser } from '../../model/login-form-user';
+import { LoginFormUser } from '../../models/login-form-user';
 import { LoginService } from '../../service/login.service';
 
 /**
