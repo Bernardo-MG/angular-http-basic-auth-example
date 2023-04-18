@@ -9,7 +9,7 @@ import { MenuLink } from '@app/shared/navigation/model/menu-link';
 })
 export class HeaderLayoutComponent {
 
-  public title = 'angular-http-basic-auth-example';
+  public title = 'Angular HTTP Basic Authentication Example';
 
   public links: MenuLink[] = [{ name: 'login', path: '/login' },{ name: 'data', path: '/data' }];
 
