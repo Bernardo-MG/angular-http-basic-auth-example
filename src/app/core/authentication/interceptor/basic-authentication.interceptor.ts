@@ -2,7 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
-import { AuthenticationContainer } from '../service/authentication-container.service';
+import { AuthenticationContainer } from '../services/authentication-container.service';
 
 /**
  * Basic HTTP authentication interceptor. Adds the basic authentication token to all request to
@@ -28,8 +28,8 @@ export class BasicAuthenticationInterceptor implements HttpInterceptor {
       // It is a request to our API
 
       // Acquire the current user token
-      const logged = this.authenticationContainer.getLoginDetails().logged;
-      const token = this.authenticationContainer.getLoginDetails().token;
+      const logged = this.authenticationContainer.getUserStatus().logged;
+      const token = this.authenticationContainer.getUserStatus().token;
 
       if ((logged) && (token)) {
         // Has token
