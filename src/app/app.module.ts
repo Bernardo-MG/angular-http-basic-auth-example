@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationModule } from './shared/navigation/navigation.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { NavigationModule } from './shared/navigation/navigation.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NavigationModule
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
