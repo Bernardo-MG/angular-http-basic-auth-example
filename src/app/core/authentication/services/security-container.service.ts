@@ -18,11 +18,11 @@ export class SecurityContainer {
   /**
    * Subject with the user status.
    */
-  private userSubject: BehaviorSubject<SecurityStatus>;
+  private statusSubject: BehaviorSubject<SecurityStatus>;
 
   constructor(
   ) {
-    this.userSubject = this.readUserFromLocal();
+    this.statusSubject = this.readStatusFromLocal();
   }
 
   /**
@@ -30,7 +30,7 @@ export class SecurityContainer {
    */
   public reset() {
     // Replace local data with empty user status
-    this.userSubject.next(new SecurityStatus());
+    this.statusSubject.next(new SecurityStatus());
 
     // Clear local storage
     localStorage.removeItem(this.userKey);
@@ -41,7 +41,7 @@ export class SecurityContainer {
    * @returns the user currently in session
    */
   public getStatus(): SecurityStatus {
-    return this.userSubject.value;
+    return this.statusSubject.value;
   }
 
   /**
@@ -50,7 +50,7 @@ export class SecurityContainer {
    * @returns the user status for the user currently in session as an observable
    */
   public getStatusObservable(): Observable<SecurityStatus> {
-    return this.userSubject.asObservable();
+    return this.statusSubject.asObservable();
   }
 
   /**
@@ -60,7 +60,7 @@ export class SecurityContainer {
    * @param user user status to store
    */
   public setStatus(user: SecurityStatus, rememberMe: boolean) {
-    this.userSubject.next(user);
+    this.statusSubject.next(user);
 
     if (rememberMe) {
       // Store user status in the local storage
@@ -79,7 +79,7 @@ export class SecurityContainer {
    * 
    * @returns the user stored in the local storage as part of the 'remember me'
    */
-  private readUserFromLocal(): BehaviorSubject<SecurityStatus> {
+  private readStatusFromLocal(): BehaviorSubject<SecurityStatus> {
     let subject: BehaviorSubject<SecurityStatus>;
 
     // If the user was stored, load it
