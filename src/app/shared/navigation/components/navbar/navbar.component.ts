@@ -3,8 +3,7 @@ import { MenuLink } from '../../model/menu-link';
 
 @Component({
   selector: 'view-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.sass']
+  templateUrl: './navbar.component.html'
 })
 export class NavbarComponent {
 
