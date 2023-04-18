@@ -14,7 +14,7 @@ export class BusinessService {
   ) { }
 
   getData(): Observable<Data[]> {
-    return this.http.get<ApiResponse<Data[]>>(`${environment.apiUrl}/rest/entity/`)
+    return this.http.get<ApiResponse<Data[]>>(`${environment.apiUrl}/rest/entity`)
       .pipe(map(response => response.content));
   }
 
