@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthenticationContainer } from '@app/core/authentication/services/authentication-container.service';
+import { SecurityContainer } from '@app/core/authentication/services/security-container.service';
 import { MenuLink } from '@app/shared/navigation/model/menu-link';
 
 @Component({
@@ -15,9 +15,9 @@ export class HeaderLayoutComponent {
   public loggedIn = false;
 
   constructor(
-    private authenticationContainer: AuthenticationContainer
+    private securityContainer: SecurityContainer
   ) {
-    this.authenticationContainer.getUserStatusObservable().subscribe(u => { this.loggedIn = u.logged });
+    this.securityContainer.getStatusObservable().subscribe(u => { this.loggedIn = u.logged });
   }
 
 }

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthenticationContainer } from '../services/authentication-container.service';
+import { SecurityContainer } from '../services/security-container.service';
 import { LoggedInGuard } from './logged-in.guard';
 
 describe('LoggedInGuard', () => {
@@ -12,7 +12,7 @@ describe('LoggedInGuard', () => {
         RouterTestingModule
       ],
       providers: [
-        AuthenticationContainer
+        SecurityContainer
       ]
     });
     guard = TestBed.inject(LoggedInGuard);
