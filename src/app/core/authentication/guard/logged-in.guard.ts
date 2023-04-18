@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { SecurityContainer } from '../services/security-container.service';
 
 /**
