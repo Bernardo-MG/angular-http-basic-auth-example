@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuLink } from './navigation/model/menu-link';
+import { MenuLink } from './shared/navigation/model/menu-link';
 
 @Component({
   selector: 'app-root',

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { AuthenticationContainer } from '@app/authentication/service/authentication-container.service';
 import { MenuLink } from '../model/menu-link';
+import { AuthenticationContainer } from '@app/core/authentication/service/authentication-container.service';
 
 @Component({
   selector: 'navigation-menu',
