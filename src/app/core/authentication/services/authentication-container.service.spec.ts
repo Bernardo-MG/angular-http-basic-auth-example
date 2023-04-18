@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { AuthenticationContainer } from './authentication-container.service';
 
 describe('AuthenticationContainer', () => {

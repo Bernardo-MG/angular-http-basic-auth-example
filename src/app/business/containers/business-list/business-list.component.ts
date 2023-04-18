@@ -4,14 +4,13 @@ import { BusinessService } from '../../service/business.service';
 
 @Component({
   selector: 'business-list',
-  templateUrl: './business-list.component.html',
-  styleUrls: ['./business-list.component.sass']
+  templateUrl: './business-list.component.html'
 })
 export class BusinessListComponent {
 
   data: Data[] = [];
 
-  constructor(private dataService: BusinessService) {
+  constructor(dataService: BusinessService) {
     dataService.getData().subscribe(data => this.data = data);
   }
 

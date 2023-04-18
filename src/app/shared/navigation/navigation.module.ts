@@ -1,15 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NavigationDropdownComponent } from './components/navigation-dropdown/navigation-dropdown.component';
 import { LoginModule } from '@app/core/login/login.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
-    NavbarComponent,
-    NavigationDropdownComponent
+    NavbarComponent
   ],
   imports: [
     CommonModule,
@@ -17,8 +15,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     LoginModule
   ],
   exports: [
-    NavbarComponent,
-    NavigationDropdownComponent
+    NavbarComponent
   ]
 })
 export class NavigationModule { }

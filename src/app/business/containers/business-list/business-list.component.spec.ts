@@ -1,8 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { LayoutModule } from '@app/shared/layout/layout.module';
 import { BusinessService } from '../../service/business.service';
 import { BusinessListComponent } from './business-list.component';
-import { LayoutModule } from '@app/shared/layout/layout.module';
 
 describe('BusinessListComponent', () => {
   let component: BusinessListComponent;

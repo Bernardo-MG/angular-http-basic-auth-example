@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NavigationModule } from './navigation/navigation.module';
 import { LayoutModule } from './layout/layout.module';
+import { NavigationModule } from './navigation/navigation.module';
 
 
 

@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HeaderLayoutComponent } from './header-layout.component';
 import { AuthenticationContainer } from '@app/core/authentication/services/authentication-container.service';
 import { NavbarComponent } from '@app/shared/navigation/components/navbar/navbar.component';
+import { HeaderLayoutComponent } from './header-layout.component';
 
 describe('HeaderLayoutComponent', () => {
   let component: HeaderLayoutComponent;

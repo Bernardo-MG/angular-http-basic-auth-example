@@ -8,8 +8,7 @@ import { LoginService } from '../../service/login.service';
  */
 @Component({
   selector: 'logout-button',
-  templateUrl: './logout-button.component.html',
-  styleUrls: ['./logout-button.component.sass']
+  templateUrl: './logout-button.component.html'
 })
 export class LogoutButtonComponent {
 

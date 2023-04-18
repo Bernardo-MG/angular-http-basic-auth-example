@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-
-import { BasicAuthenticationInterceptor } from './basic-authentication.interceptor';
 import { AuthenticationContainer } from '../services/authentication-container.service';
+import { BasicAuthenticationInterceptor } from './basic-authentication.interceptor';
 
 describe('BasicAuthenticationInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({

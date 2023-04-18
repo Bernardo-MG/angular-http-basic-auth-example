@@ -1,10 +1,10 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { LogoutButtonComponent } from './logout-button.component';
-import { LoginService } from '../../service/login.service';
 import { AuthenticationContainer } from '@app/core/authentication/services/authentication-container.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LoginService } from '../../service/login.service';
+import { LogoutButtonComponent } from './logout-button.component';
 
 describe('LogoutButtonComponent', () => {
   let component: LogoutButtonComponent;

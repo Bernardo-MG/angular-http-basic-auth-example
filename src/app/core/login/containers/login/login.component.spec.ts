@@ -4,8 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CoreModule } from '@app/core/core.module';
 import { LoginFormComponent } from '../../components/login-form/login-form.component';
-import { LoginComponent } from './login.component';
 import { LoginService } from '../../service/login.service';
+import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -30,7 +30,7 @@ describe('LoginComponent', () => {
     })
       .compileComponents();
 
-      loginService = TestBed.inject(LoginService);
+    loginService = TestBed.inject(LoginService);
   });
 
   beforeEach(() => {

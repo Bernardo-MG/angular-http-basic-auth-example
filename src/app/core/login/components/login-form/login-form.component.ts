@@ -7,8 +7,7 @@ import { LoginFormUser } from '../../model/login-form-user';
  */
 @Component({
   selector: 'authentication-login-form',
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.sass']
+  templateUrl: './login-form.component.html'
 })
 export class LoginFormComponent {
 

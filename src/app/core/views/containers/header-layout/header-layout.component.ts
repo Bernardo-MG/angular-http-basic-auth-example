@@ -4,14 +4,13 @@ import { MenuLink } from '@app/shared/navigation/model/menu-link';
 
 @Component({
   selector: 'view-header-layout',
-  templateUrl: './header-layout.component.html',
-  styleUrls: ['./header-layout.component.sass']
+  templateUrl: './header-layout.component.html'
 })
 export class HeaderLayoutComponent {
 
   public title = 'Angular HTTP Basic Authentication Example';
 
-  public links: MenuLink[] = [{ name: 'login', path: '/login' },{ name: 'data', path: '/data' }];
+  public links: MenuLink[] = [{ name: 'login', path: '/login' }, { name: 'data', path: '/data' }];
 
   public loggedIn = false;
 
