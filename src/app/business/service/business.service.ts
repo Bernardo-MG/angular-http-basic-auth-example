@@ -7,7 +7,7 @@ import { Data } from '../model/data';
 import { ApiResponse } from '@app/core/api/models/api-response';
 
 @Injectable()
-export class DataService {
+export class BusinessService {
 
   constructor(
     private http: HttpClient

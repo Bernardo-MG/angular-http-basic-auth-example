@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { DataService } from './data.service';
+import { BusinessService } from './business.service';
 
-describe('DataService', () => {
-  let service: DataService;
+describe('BusinessService', () => {
+  let service: BusinessService;
   let httpClient: HttpClient;
 
   beforeEach(() => {
@@ -13,11 +13,11 @@ describe('DataService', () => {
         HttpClientTestingModule
       ],
       providers: [
-        DataService
+        BusinessService
       ]
     });
     httpClient = TestBed.inject(HttpClient);
-    service = TestBed.inject(DataService);
+    service = TestBed.inject(BusinessService);
   });
 
   it('should be created', () => {

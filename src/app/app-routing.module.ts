@@ -6,10 +6,10 @@ import { CenteredLayoutComponent } from './core/views/containers/centered-layout
 import { HeaderLayoutComponent } from './core/views/containers/header-layout/header-layout.component';
 
 const loginModule = () => import('@app/core/login/login.module').then(m => m.LoginModule);
-const businessModule = () => import('@app/business/data.module').then(m => m.DataModule);
+const businessModule = () => import('@app/business/business.module').then(m => m.BusinessModule);
 
 const routes: Routes = [
-  { path: '', redirectTo: '/data', pathMatch: 'full' },
+  { path: '', redirectTo: '/business', pathMatch: 'full' },
   // Login
   {
     path: 'login',
@@ -28,7 +28,7 @@ const routes: Routes = [
   },
   // Business
   {
-    path: 'data',
+    path: 'business',
     component: HeaderLayoutComponent,
     canActivate: [LoggedInGuard],
     children: [
