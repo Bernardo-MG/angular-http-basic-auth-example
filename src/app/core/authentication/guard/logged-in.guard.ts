@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SecurityContainer } from '../services/security-container.service';
 
 /**
@@ -19,7 +19,9 @@ export const LoggedInGuard = () => {
   } else {
     // Not logged in
     // Redirect to login
-    router.navigate([loginRoute], { queryParams: { returnUrl: router.routerState.snapshot.url } });
+    if (router.routerState.snapshot.url.split('?')[0] !== loginRoute) {
+      router.navigate([loginRoute], { queryParams: { returnUrl: router.routerState.snapshot.url } });
+    }
     active = false;
   }
 
