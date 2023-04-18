@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { LoginModule } from './login/login.module';
+import { ViewsModule } from './views/views.module';
 
 
 
@@ -9,12 +10,14 @@ import { LoginModule } from './login/login.module';
   imports: [
     CommonModule,
     AuthenticationModule,
-    LoginModule
+    LoginModule,
+    ViewsModule
   ],
   exports: [
     CommonModule,
     AuthenticationModule,
-    LoginModule
+    LoginModule,
+    ViewsModule
   ]
 })
 export class CoreModule { }
