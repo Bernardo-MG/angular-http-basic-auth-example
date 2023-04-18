@@ -12,7 +12,10 @@ import { SecurityContainer } from '../services/security-container.service';
 })
 export class LoggedOutGuard implements CanActivate {
 
-  private homeUrl = '/';
+  /**
+   * Application home route.
+   */
+  private homeRoute = '/';
 
   constructor(
     private router: Router,
@@ -29,7 +32,7 @@ export class LoggedOutGuard implements CanActivate {
       // Logged in
       // Redirect to home
       active = false;
-      this.router.navigate([this.homeUrl]);
+      this.router.navigate([this.homeRoute]);
     } else {
       // Not logged in
       active = true;

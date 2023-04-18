@@ -12,7 +12,10 @@ import { SecurityContainer } from '../services/security-container.service';
 })
 export class LoggedInGuard implements CanActivate {
 
-  private loginUrl = '/login';
+  /**
+   * Login form route.
+   */
+  private loginRoute = '/login';
 
   constructor(
     private router: Router,
@@ -31,7 +34,7 @@ export class LoggedInGuard implements CanActivate {
     } else {
       // Not logged in
       // Redirect to login
-      this.router.navigate([this.loginUrl], { queryParams: { returnUrl: state.url } });
+      this.router.navigate([this.loginRoute], { queryParams: { returnUrl: state.url } });
       active = false;
     }
 

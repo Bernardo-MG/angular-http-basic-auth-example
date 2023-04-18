@@ -11,8 +11,14 @@ import { SecurityContainer } from '../services/security-container.service';
 @Injectable()
 export class BasicAuthenticationInterceptor implements HttpInterceptor {
 
+  /**
+   * Token header for the authentication details.
+   */
   private tokenHeaderKey = 'Authorization';
 
+  /**
+   * Authentication type identifier.
+   */
   private tokenHeaderIdentifier = 'Basic'
 
   constructor(
