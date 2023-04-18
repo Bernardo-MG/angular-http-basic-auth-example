@@ -10,8 +10,6 @@ const loginModule = () => import('@app/core/login/login.module').then(m => m.Log
 const businessModule = () => import('@app/business/data.module').then(m => m.DataModule);
 
 const routes: Routes = [
-  { path: '', redirectTo: '/data', pathMatch: 'full' },
-  { path: 'login', loadChildren: loginModule, canActivate: [LoggedOutGuard] },
   // Main app
   {
     path: '', component: HeaderLayoutComponent,
