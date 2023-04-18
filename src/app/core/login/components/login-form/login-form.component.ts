@@ -17,6 +17,11 @@ export class LoginFormComponent {
   @Input() public loading = false;
 
   /**
+   * Failed login flag. Shows the failure warning.
+   */
+  @Input() public failed = false;
+
+  /**
    * Login event. Sent when the user accepts the data in the form.
    */
   @Output() public login = new EventEmitter<LoginFormUser>();
