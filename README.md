@@ -1,6 +1,8 @@
 # Angular HTTP Basic Authentication Example
 
-Example for setting up HTTP Basic authentication with Angular. It is prepared to be used with [Spring WS Basic Security Example](https://github.com/bernardo-mg/spring-ws-basic-security-example);
+Example using HTTP Basic authentication with Angular.
+
+Run the [Spring WS Basic Security Example](https://github.com/bernardo-mg/spring-ws-basic-security-example) for the backend.
 
 ## Features
 
@@ -9,13 +11,13 @@ Example for setting up HTTP Basic authentication with Angular. It is prepared to
 
 ## Usage
 
-### Building the project
-
-This builds the development version:
+The project can be deployed locally for testing:
 
 ```
-npm run build
+npm start
 ```
+
+It will be available on `http://localhost:4200/`. Changes will be reloaded automatically.
 
 ### Running tests
 
@@ -24,16 +26,6 @@ To run the unit tests:
 ```
 npm test
 ```
-
-## Deploying locally
-
-The project can be deployed locally for testing:
-
-```
-npm start
-```
-
-It will be available on `http://localhost:4200/`. Changes will be reloaded automatically.
 
 ## Collaborate
 
@@ -54,6 +46,6 @@ If you wish to fork or modify the code, visit the [GitHub project page][scm], wh
 
 The project has been released under the [MIT License][license].
 
-[issues]: https://github.com/Bernardo-MG/dnd5-api-angular-client/issues
+[issues]: https://github.com/Bernardo-MG/angular-http-basic-auth-example/issues
 [license]: http://www.opensource.org/licenses/mit-license.php
-[scm]: https://github.com/Bernardo-MG/dnd5-api-angular-client
+[scm]: https://github.com/Bernardo-MG/angular-http-basic-auth-example
